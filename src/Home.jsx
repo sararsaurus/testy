@@ -24,7 +24,6 @@ export function Home() {
       successCallback();
     });
   };
-  // test
 
   useEffect(handleIndexProducts, []);
 
