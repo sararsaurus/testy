@@ -5,9 +5,12 @@ import { ProductsNew } from "./ProductsNew";
 import { Signup } from "./Signup";
 import { Login } from "./Login";
 import { LogoutLink } from "./LogoutLink";
+import { Modal } from "./Modal";
 
 export function Home() {
   const [products, setProducts] = useState([]);
+  const [isProductsShowVisible, setIsProductsShowVisible] = useState(false);
+  const [currentProduct, setCurrentProduct] = useState({});
 
   const handleIndexProducts = () => {
     console.log("TESTING INDEX PRODUCTS");
@@ -25,6 +28,17 @@ export function Home() {
     });
   };
 
+  const handleShowProduct = (product) => {
+    console.log("handleShowProduct", product);
+    setIsProductsShowVisible(true);
+    setCurrentProduct(product);
+  };
+
+  const handleClose = () => {
+    console.log("handleClose");
+    setIsProductsShowVisible(false);
+  };
+
   useEffect(handleIndexProducts, []);
 
   return (
@@ -34,7 +48,10 @@ export function Home() {
       <Login />
       <LogoutLink />
       <ProductsNew onCreateProduct={handleCreateProduct} />
-      <ProductsIndex products={products} />
+      <ProductsIndex products={products} onShowProduct={handleShowProduct} />
+      <Modal show={isProductsShowVisible} onClose={handleClose}>
+        <h1>Test</h1>
+      </Modal>
     </div>
   );
 }
