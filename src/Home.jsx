@@ -6,6 +6,7 @@ import { Signup } from "./Signup";
 import { Login } from "./Login";
 import { LogoutLink } from "./LogoutLink";
 import { Modal } from "./Modal";
+import { ProductsShow } from "./ProductsShow";
 
 export function Home() {
   const [products, setProducts] = useState([]);
@@ -50,7 +51,7 @@ export function Home() {
       <ProductsNew onCreateProduct={handleCreateProduct} />
       <ProductsIndex products={products} onShowProduct={handleShowProduct} />
       <Modal show={isProductsShowVisible} onClose={handleClose}>
-        <h1>Test</h1>
+        <ProductsShow product={currentProduct} />
       </Modal>
     </div>
   );
